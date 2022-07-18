@@ -13,14 +13,14 @@ public class App
     public static void main( String[] args )
     {
         Automaton ex = new Automaton(fileSample);
-        runTests(ex);
-        System.out.println(ex.toString());
+        // runTests(ex);
+        // System.out.println(ex.toString());
     }
 
     // iterates through list of tests
     public static void runTests(Automaton au){
         for(String s : au.tests){
-            if(testString(s, au.finalStates, au.moves))
+            if(testString(s, au.finalStates, au.sym, au.moves))
                 au.results.add(true);
             else
                 au.results.add(false);
@@ -28,7 +28,13 @@ public class App
     }
 
     // Determies if string exists in language
-    static Boolean testString(String str, Boolean[] fin, ArrayList<String[]> mv){
+    public static Boolean testString(String str, Boolean[] fin, ArrayList<Character> az, ArrayList<String[]> mv){
+        String currentState = "0";
+        char nextSymbol = str.charAt(0);
+
+        for(int i=0; i<str.length(); i++){
+
+        }
         return true;
     }
 }

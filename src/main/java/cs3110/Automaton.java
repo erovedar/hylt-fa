@@ -19,12 +19,13 @@ import java.util.Scanner;
 public class Automaton{
     int n;                              // number of states
     Boolean[] finalStates;              // array of final/accepting states
-    String[] az;                        // array of symbols in alphabet
-    ArrayList<String[]> moves;          // list of transitions
-    ArrayList<String> tests;            // list of tests
+    ArrayList<Character> sym;           // stores symbols in alphabet
+    ArrayList<String[]> moves;          // stores transitions
+    ArrayList<String> tests;            // stores tests
     ArrayList<Boolean> results;         // stores results
 
     public Automaton(String filePath){
+        sym = new ArrayList<>();
         moves = new ArrayList<>();
         tests = new ArrayList<>();
         results = new ArrayList<>();
@@ -32,24 +33,29 @@ public class Automaton{
         try{
             File file = new File(filePath);
             Scanner sc = new Scanner(file);
+
+            // read number of states
             n = Integer.parseInt(sc.nextLine());
+            // initialize accepting states, default to false
             finalStates = new Boolean[n];
             Arrays.fill(finalStates, false);
 
-            String acceptStates = sc.nextLine();
-            String[] asSplit = acceptStates.split("\\s+");
-            for(String s : asSplit){
+            // read accepting states, split into array 
+            // set corresponding values to true
+            String[] acceptStates = sc.nextLine().split("\\s+");
+            for(String s : acceptStates){
                 finalStates[Integer.parseInt(s)] = true;
             }
 
             String alphabet = sc.nextLine();
-            az = alphabet.split("\\s+");
+            String[] az = alphabet.split("\\s+");
             // Data validation: symbols should only have length of 1
             for (String s : az){
                 if(s.length() > 1){
                     System.out.println("Error: Check alphabet: " + alphabet + "\n");
                     System.exit(1);
                 }
+                sym.add(s.charAt(0));
             }
 
             char openPar = '(';
@@ -57,22 +63,25 @@ public class Automaton{
             while(sc.hasNext()){
                 String li = sc.nextLine();
                 if(li.charAt(0) == openPar && li.charAt(li.length()-1) == closePar){
-                    // transition
+                    // transition denoted by parentheses
+                    // remove parentheses and split into array
                     li = li.substring(1, li.length()-1);
                     String[] tr = li.split("\\s+");
     
                     // input validation
-                    if(tr.length > 3){                    
+                    if(tr.length != 3){                    
+                        // expected: three numbers only
                         System.out.println("Error: Check transition: " + li + "\n");
                     }
-                    if(Integer.parseInt(tr[0]) > n || Integer.parseInt(tr[0]) < 0 || 
-                    Integer.parseInt(tr[2]) > n || Integer.parseInt(tr[2]) < 0){
+                    if(Integer.parseInt(tr[0]) >= n || Integer.parseInt(tr[0]) < 0 || 
+                    Integer.parseInt(tr[2]) >= n || Integer.parseInt(tr[2]) < 0){
+                        // states should not be greater than n
                         System.out.println("Error: Transition out of bounds: " + li + "\n");
                     }
                     moves.add(tr);
                 }
                 else{
-                    // test string
+                    // assume test string
                     tests.add(li);
                 }
             }
