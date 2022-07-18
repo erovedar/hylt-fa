@@ -14,7 +14,7 @@ public class App
     {
         Automaton ex = new Automaton(fileSample);
         // runTests(ex);
-        // System.out.println(ex.toString());
+        System.out.println(ex.toString());
     }
 
     // iterates through list of tests

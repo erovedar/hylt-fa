@@ -98,7 +98,7 @@ public class Automaton{
         String s = "Finite State Automaton\n";
         s += "1) Number of states: " + n + "\n";
         s += "2) Final state(s): " + printFin(finalStates) + "\n";
-        s += "3) Alphabet: " + printAlph(az) + "\n";
+        s += "3) Alphabet: " + printAlph(sym) + "\n";
         s += "4) Transitions:\n" + printMoves(moves);
         s += "5) Tests: " + tests;
         return s;
@@ -114,9 +114,9 @@ public class Automaton{
         return s;
     }
 
-    public static String printAlph(String[] a){
+    public static String printAlph(ArrayList<Character> a){
         String s = "";
-        for(String c: a){
+        for(char c: a){
             s += c + " ";
         }
         return s;
