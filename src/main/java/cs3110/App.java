@@ -1,14 +1,19 @@
-package cs3110;
+/* Finite State Automata
+ * CS 3110 - Cal Poly Pomona
+ * Team Blink - Connor Ramirez & Ero Vedar
+ * Summer 2022
+ */
 
+package cs3110;
 import java.util.ArrayList;
 
 public class App 
 {
     static String fileSample = "src/main/java/cs3110/test.txt";
-    static String fileM1 = "src/main/java/cs3110/m1.txt";
-    static String fileM2 = "src/main/java/cs3110/m2.txt";
-    static String fileM3 = "src/main/java/cs3110/m3.txt";
-    static String fileM4 = "src/main/java/cs3110/m4.txt";
+    static String LISA = "src/main/java/cs3110/m1.txt";
+    static String ROSE = "src/main/java/cs3110/m2.txt";
+    static String JENNIE = "src/main/java/cs3110/m3.txt";
+    static String JISOO = "src/main/java/cs3110/m4.txt";
 
     public static void main( String[] args )
     {

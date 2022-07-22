@@ -8,8 +8,8 @@ import java.util.Scanner;
  * Sample text file:
  * 3        number of states // n
  * 0 1      accepting state(s), whitespace deliminated // finalStates
- * 0 1      alphabet, whitespace deliminated // az
- * (0 0 0)  transitions, new line deliminated // transitions
+ * 0 1      alphabet, whitespace deliminated // sym
+ * (0 0 0)  transitions, new line deliminated // moves
  * (0 1 1)  (presentState nextSymbol nextState)
  * (1 0 0)
  * (1 1 1)
@@ -63,7 +63,7 @@ public class Automaton{
             while(sc.hasNext()){
                 String li = sc.nextLine();
                 if(li.charAt(0) == openPar && li.charAt(li.length()-1) == closePar){
-                    // transition denoted by parentheses
+                    // transition detected by parentheses
                     // remove parentheses and split into array
                     li = li.substring(1, li.length()-1);
                     String[] tr = li.split("\\s+");
@@ -72,11 +72,13 @@ public class Automaton{
                     if(tr.length != 3){                    
                         // expected: three numbers only
                         System.out.println("Error: Check transition: " + li + "\n");
+                        System.exit(1);
                     }
                     if(Integer.parseInt(tr[0]) >= n || Integer.parseInt(tr[0]) < 0 || 
                     Integer.parseInt(tr[2]) >= n || Integer.parseInt(tr[2]) < 0){
                         // states should not be greater than n
                         System.out.println("Error: Transition out of bounds: " + li + "\n");
+                        System.exit(1);
                     }
                     moves.add(tr);
                 }
