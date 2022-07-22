@@ -6,6 +6,7 @@
 
 package cs3110;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class App 
 {
@@ -18,11 +19,12 @@ public class App
     public static void main( String[] args )
     {
         Automaton ex = new Automaton(fileSample);
-        // runTests(ex);
+        runTests(ex);
         System.out.println(ex.toString());
     }
 
     // iterates through list of tests
+    // results of string tests are stored in an arraylist
     public static void runTests(Automaton au){
         for(String s : au.tests){
             if(testString(s, au.finalStates, au.sym, au.moves))
@@ -32,14 +34,32 @@ public class App
         }
     }
 
-    // Determies if string exists in language
+    // Determines if string exists in language
     public static Boolean testString(String str, Boolean[] fin, ArrayList<Character> az, ArrayList<String[]> mv){
-        String currentState = "0";
-        char nextSymbol = str.charAt(0);
+        int currentState = 0;
+        char nextSym;
 
+        System.out.println("STRING: " + str);
         for(int i=0; i<str.length(); i++){
-
+            nextSym = str.charAt(i);
+            System.out.println("Current state: " + currentState);
+            System.out.println("next sym: " + nextSym);
+            Boolean found = false;
+            for(String[] t : mv){
+                if(currentState==Integer.parseInt(t[0]) && nextSym==t[1].charAt(0)){
+                    currentState = Integer.parseInt(t[2]);
+                    System.out.println("\tMove found:\t" + Arrays.toString(t));
+                    found = true;
+                    break;
+                }
+            }
+            if(!found){
+                System.out.println("\tNo move available");
+                return false;
+            }
+            System.out.println("\tNew state: " + currentState);
         }
-        return true;
+        System.out.println("RESULT: " + fin[currentState] + "\n");
+        return fin[currentState];
     }
 }

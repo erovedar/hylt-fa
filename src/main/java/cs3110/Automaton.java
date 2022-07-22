@@ -103,6 +103,7 @@ public class Automaton{
         s += "3) Alphabet: " + printAlph(sym) + "\n";
         s += "4) Transitions:\n" + printMoves(moves);
         s += "5) Tests: " + tests;
+        s += "\nResults: " + printRes(tests, results);
         return s;
     }
 
@@ -132,7 +133,11 @@ public class Automaton{
         return s;
     }
 
-    public static String printResults(){
-        return "";
+    public static String printRes(ArrayList<String> t, ArrayList<Boolean> r){
+        String s = "";
+        for(int i=0; i<t.size(); i++){
+            s+= t.get(i) + "\t" + r.get(i) + "\n";
+        }
+        return s;
     }
 }
