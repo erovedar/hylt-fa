@@ -103,7 +103,7 @@ public class Automaton{
         s += "3) Alphabet: " + printAlph(sym) + "\n";
         s += "4) Transitions:\n" + printMoves(moves);
         s += "5) Tests: " + tests;
-        s += "\nResults: " + printRes(tests, results);
+        s += "\nResults:\n" + printRes(tests, results);
         return s;
     }
 
