@@ -49,7 +49,9 @@ public class App
             System.out.println("next sym: " + nextSym);
             Boolean found = false;
             for(String[] t : mv){
+                // search for matching transition
                 if(currentState==Integer.parseInt(t[0])){
+                    // search for matching symbol or wildcard
                     if(nextSym==t[1].charAt(0) || (t[1].equals("*") && az.contains(nextSym))){
                         currentState = Integer.parseInt(t[2]);
                         System.out.println("\tMove found:\t" + Arrays.toString(t));
@@ -57,12 +59,6 @@ public class App
                         break;
                     }
                 }
-                // if(currentState==Integer.parseInt(t[0]) && nextSym==t[1].charAt(0)){
-                //     currentState = Integer.parseInt(t[2]);
-                //     System.out.println("\tMove found:\t" + Arrays.toString(t));
-                //     found = true;
-                //     break;
-                // }
             }
             if(!found){
                 System.out.println("\tNo move available");
