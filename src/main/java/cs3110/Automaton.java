@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-/* Generic data structure for finite automaton with data provided from a file
+/* Custom data structure for finite automaton with data provided from a file
  * Sample text file:
  * 3        number of states // n
  * 0 1      accepting state(s), whitespace deliminated // finalStates
@@ -22,13 +22,11 @@ public class Automaton{
     ArrayList<Character> sym;           // stores symbols in alphabet
     ArrayList<String[]> moves;          // stores transitions
     ArrayList<String> tests;            // stores tests
-    ArrayList<Boolean> results;         // stores results - if a word exists
 
     public Automaton(String filePath){
         sym = new ArrayList<>();
         moves = new ArrayList<>();
         tests = new ArrayList<>();
-        results = new ArrayList<>();
 
         try{
             File file = new File(filePath);
@@ -97,13 +95,12 @@ public class Automaton{
 
     @Override
     public String toString(){
-        String s = "Finite State Automaton\n";
-        s += "1) Number of states: " + n + "\n";
+        //String s = "Finite State Automaton\n";
+        String s = "1) Number of states: " + n + "\n";
         s += "2) Final state(s): " + printFin(finalStates) + "\n";
         s += "3) Alphabet: " + printAlph(sym) + "\n";
         s += "4) Transitions:\n" + printMoves(moves);
-        s += "5) Tests: " + tests;
-        s += "\nResults:\n" + printRes(tests, results);
+        s += "5) Strings: " + tests;
         return s;
     }
 
@@ -129,14 +126,6 @@ public class Automaton{
         String s = "";
         for(String[] t : tr){
             s += "\t" + Arrays.toString(t) + "\n";
-        }
-        return s;
-    }
-
-    public static String printRes(ArrayList<String> t, ArrayList<Boolean> r){
-        String s = "";
-        for(int i=0; i<t.size(); i++){
-            s+= t.get(i) + "\t" + r.get(i) + "\n";
         }
         return s;
     }
