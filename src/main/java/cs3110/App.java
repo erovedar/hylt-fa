@@ -1,6 +1,6 @@
 /* Finite State Automata
  * CS 3110 - Cal Poly Pomona
- * Team Blink - Connor Ramirez & Ero Vedar
+ * Team Blink - Conner Ramirez & Ero Vedar
  * Summer 2022
  */
 
@@ -18,7 +18,7 @@ public class App
 
     public static void main( String[] args )
     {
-        Automaton ex = new Automaton(fileSample);
+        Automaton ex = new Automaton(LISA);
         runTests(ex);
         System.out.println(ex.toString());
     }
