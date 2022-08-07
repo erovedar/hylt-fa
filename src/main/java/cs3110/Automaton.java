@@ -7,13 +7,13 @@ import java.util.Scanner;
 /* Custom data structure for finite automaton with data provided from a file
  * Sample text file:
  * 3        number of states // n
- * 0 1      accepting state(s), whitespace deliminated // finalStates
- * 0 1      alphabet, whitespace deliminated // sym
- * (0 0 0)  transitions, new line deliminated // moves
+ * 0 1      accepting state(s), whitespace delimited // finalStates
+ * 0 1      alphabet, whitespace delimited // sym
+ * (0 0 0)  transitions, new line delimited // moves
  * (0 1 1)  (presentState nextSymbol nextState)
  * (1 0 0)
  * (1 1 1)
- * 1000     test cases, new line deliminated // tests
+ * 1000     test cases, new line delimited // tests
  * 10001    */
 
 public class Automaton{
